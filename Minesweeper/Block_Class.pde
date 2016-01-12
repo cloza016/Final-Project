@@ -1,23 +1,27 @@
 class Block{
   boolean hasMine;
+  float X;
+  float Y;
   
-  block(){
+  Block(){
   }
   
-  void display(x,y){
+  void display(float x, float y){
+   x= X;
+   y= Y;
     fill(150);
-    rect(x,y,20,20);
+    rect(X,Y,20,20);
   }
   
-  boolean mine(){
-    hasMine = true;
-    fill(0);
-    ellipse(x,y,5,5)
-  }
+ // boolean mine(){
+    //hasMine = true;
+    //fill(0);
+    //ellipse(x,y,5,5);
+  //}
   
-  int surroundingMines(){
+  //int surroundingMines(){
     //check how many mines around
-    int n;
-    return n;
-  }
-    
+    //int n;
+    //return n;
+  //}
+}
