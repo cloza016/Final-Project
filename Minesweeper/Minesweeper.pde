@@ -1,23 +1,22 @@
-int count = 81;
-Block[] a = new Block[count];
-float x = 0;
-float y = 0;
+int x = 0;
+int y = 0;
+Block[][] a = new Block[9][9];
+
 
 void setup() {
   size(500, 500);
-  for (int i = 0; i<count; i++) {
-    a[i] = new Block();
+  for (int x = 0; x < 9; x++) {
+    for (int y = 0; y < 9; y ++) {
+      a[x][y] = new Block(x*50, y*50);
+    }
   }
 }
 
 void draw() {
-  background(255);
-  for (int i = 0; i<count; i++) {
-    a[i].display(x, y);
-    if (x<width) {
-      x= x+20;
-    } else {
-      y = y + 1;
+  background(0);
+  for (int x = 0; x < 9; x++) {
+    for (int y = 0; y < 9; y ++) {
+      a[x][y].display();
     }
   }
 }
