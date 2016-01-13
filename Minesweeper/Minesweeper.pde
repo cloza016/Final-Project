@@ -1,22 +1,27 @@
-int x = 0;
-int y = 0;
+int X = 0;
+int Y = 0;
 Block[][] a = new Block[9][9];
 
 
 void setup() {
   size(500, 500);
-  for (int x = 0; x < 9; x++) {
-    for (int y = 0; y < 9; y ++) {
-      a[x][y] = new Block(x*50, y*50);
+  for (int X = 0; X < 9; X++) {
+    for (int Y = 0; Y < 9; Y ++) {
+      a[X][Y] = new Block(X*50, Y*50);
     }
   }
 }
 
 void draw() {
   background(0);
-  for (int x = 0; x < 9; x++) {
-    for (int y = 0; y < 9; y ++) {
-      a[x][y].display();
+  for (int X = 0; X < 9; X++) {
+    for (int Y = 0; Y < 9; Y ++) {
+      a[X][Y].display();
+      if (mousePressed) {
+        if (mouseX > a[X][Y].x && mouseX < a[X][Y].x + 50 && mouseY > a[X][Y].y && mouseY < a[X][Y].y +50) {
+          a[X][Y].disappear();
+        }
+      }
     }
   }
 }
