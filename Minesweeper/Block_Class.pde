@@ -3,12 +3,14 @@ class Block {
   float x;
   float y;
   float g;
+  float m;
 
   Block(float X, float Y) {
     hasMine = false;
     x = X;
     y = Y;
     g =150;
+    m = 0;
   }
 
   void display() {
@@ -21,12 +23,6 @@ class Block {
     fill(0, 0, 0, 0);
     rect(x, y, 50, 50);
   }
-
-  // boolean mine(){
-  //hasMine = true;
-  //fill(0);
-  //ellipse(x,y,5,5);
-  //}
 
   //int surroundingMines(){
   //check how many mines around
