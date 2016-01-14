@@ -4,10 +4,10 @@ Block[][] a = new Block[9][9];
 int n;
 
 void setup() {
-  size(500, 500);
+  size(650, 650);
   for (int X = 0; X < 9; X++) {
     for (int Y = 0; Y < 9; Y ++) {
-      a[X][Y] = new Block(X*50, Y*50);
+      a[X][Y] = new Block(X*50 + 100, Y*50 + 100);
     }
   }
   n = 0;
@@ -25,7 +25,17 @@ void draw() {
         }
       }
       a[5][5].hasMine = true;
+      if (a[X][Y].revealed == true && a[X][Y].m > 0) {
+        fill(255);
+        textSize(25);
+        textAlign( CENTER, CENTER);
+        text(a[X][Y].m, a[X][Y].x + 25, a[X][Y].y + 25);
+      }
     }
+  }
+  while (n<10) {
+    a[round(random(0, 8))][round(random(0, 8))].hasMine = true;
+    n++;
   }
 }
 
@@ -40,7 +50,7 @@ void mouseClicked() {
               a[X][Y].m++;
             }
           }
-          if (X>1) {
+          if (X>0) {
             if (a[X-1][Y].hasMine) {
               a[X][Y].m++;
             }
@@ -50,17 +60,17 @@ void mouseClicked() {
               a[X][Y].m++;
             }
           }
-          if (X<8 && Y>1) {
+          if (X<8 && Y>0) {
             if (a[X+1][Y-1].hasMine) {
               a[X][Y].m++;
             }
           }
-          if (X>1 && Y<8) {
+          if (X>0 && Y<8) {
             if (a[X-1][Y+1].hasMine) {
               a[X][Y].m++;
             }
           }
-          if (X>1 && Y>1) {
+          if (X>0 && Y>0) {
             if (a[X-1][Y-1].hasMine) {
               a[X][Y].m++;
             }
@@ -70,14 +80,11 @@ void mouseClicked() {
               a[X][Y].m++;
             }
           }
-          if (Y>1) {
+          if (Y>0) {
             if (a[X][Y-1].hasMine) {
               a[X][Y].m++;
             }
           }
-          fill(255);
-          textSize(25);
-          text(a[X][Y].m, a[X][Y].x, a[X][Y].y);
         }
       }
     }

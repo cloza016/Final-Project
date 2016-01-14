@@ -3,7 +3,8 @@ class Block {
   float x;
   float y;
   float g;
-  float m;
+  int m;
+  boolean revealed;
 
   Block(float X, float Y) {
     hasMine = false;
@@ -11,6 +12,7 @@ class Block {
     y = Y;
     g =150;
     m = 0;
+    revealed = false;
   }
 
   void display() {
@@ -22,6 +24,7 @@ class Block {
     g=0;
     fill(0, 0, 0, 0);
     rect(x, y, 50, 50);
+    revealed = true;
   }
 
   //int surroundingMines(){
