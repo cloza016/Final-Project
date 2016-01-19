@@ -1,45 +1,45 @@
-int X = 0;
+int X = 0;  //initialize x,y, and n
 int Y = 0;
-Block[][] a = new Block[9][9];
+Block[][] a = new Block[9][9]; //create a 2D array of the block class with the dimensions of 9X9
 int n;
 
 void setup() {
-  size(650, 650);
-  for (int X = 0; X < 9; X++) {
+  size(650, 650);     //set the size of the canvas
+  for (int X = 0; X < 9; X++) {    //create a for loop too draw the grid for the x and y locations
     for (int Y = 0; Y < 9; Y ++) {
-      a[X][Y] = new Block(X*50 + 100, Y*50 + 100);
+      a[X][Y] = new Block(X*50 + 100, Y*50 + 100);   //using the block class give the values of the array
     }
   }
-  n = 0;
+  n = 0;   //declare the value for n
 }
 
 void draw() {
-  background(0);
-  for (int X = 0; X < 9; X++) {
+  background(0);   //set the backgroun to black
+  for (int X = 0; X < 9; X++) {   //for loop to draw the grid for the x and y values
     for (int Y = 0; Y < 9; Y++) {
-      a[X][Y].display();
-      if (mouseX > a[X][Y].x && mouseX < a[X][Y].x + 50 && mouseY > a[X][Y].y && mouseY < a[X][Y].y +50) {
-        if (a[X][Y].hasMine) {
+      a[X][Y].display();     //using the display method draw the blocks
+      if (mouseX > a[X][Y].x && mouseX < a[X][Y].x + 50 && mouseY > a[X][Y].y && mouseY < a[X][Y].y +50) {   
+        if (a[X][Y].hasMine) { 
           fill(255);
           rect(a[X][Y].x, a[X][Y].y, 10, 10);
         }
       }
       a[5][5].hasMine = true;
-      if (a[X][Y].revealed == true && a[X][Y].m > 0) {
-        fill(255);
-        textSize(25);
-        textAlign( CENTER, CENTER);
-        text(a[X][Y].m, a[X][Y].x + 25, a[X][Y].y + 25);
+      if (a[X][Y].revealed == true && a[X][Y].m > 0) { //if revealed is true
+        fill(255);  //set the fill to white
+        textSize(25); //set text size
+        textAlign( CENTER, CENTER);  //text align to center
+        text(a[X][Y].m, a[X][Y].x + 25, a[X][Y].y + 25);  //draw the variable m also know as the mine surrounding it in the box
       }
     }
   }
-  while (n<10) {
-    a[round(random(0, 8))][round(random(0, 8))].hasMine = true;
-    n++;
+  while (n<10) {    //while loop to draw the mines while the value is less than 10
+    a[round(random(0, 8))][round(random(0, 8))].hasMine = true;   //set the value for the boxes that have mines to truw for the boolean hasmine
+    n++;   //increase the value of n until it reaches 10
   }
 }
 
-void mouseClicked() {
+void mouseClicked() {  //
   for (int X = 0; X < 9; X++) {
     for (int Y = 0; Y < 9; Y++) {
       if (mouseX > a[X][Y].x && mouseX < a[X][Y].x + 50 && mouseY > a[X][Y].y && mouseY < a[X][Y].y +50) {
