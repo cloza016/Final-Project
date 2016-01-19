@@ -5,6 +5,7 @@ class Block {
   float g;
   int m;
   boolean revealed;
+  boolean flagged;
 
   Block(float X, float Y) {
     hasMine = false;
@@ -13,6 +14,7 @@ class Block {
     g =150;
     m = 0;
     revealed = false;
+    flagged = false;
   }
 
   void display() {
@@ -26,10 +28,4 @@ class Block {
     rect(x, y, 50, 50);
     revealed = true;
   }
-
-  //int surroundingMines(){
-  //check how many mines around
-  //int n;
-  //return n;
-  //}
 }
