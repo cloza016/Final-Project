@@ -34,50 +34,50 @@ void draw() {
     }
   }
   while (n<10) {    //while loop to draw the mines while the value is less than 10
-    a[round(random(0, 8))][round(random(0, 8))].hasMine = true;   //set the value for the boxes that have mines to truw for the boolean hasmine
+    a[round(random(0, 8))][round(random(0, 8))].hasMine = true;   //set the value for the boxes that have mines to true for the boolean hasmine
     n++;   //increase the value of n until it reaches 10
   }
 }
 
 void mouseClicked() {  //mouse clicked 
-  for (int X = 0; X < 9; X++) {   //while in the grid
+  for (int X = 0; X < 9; X++) {   //while in the grid...
     for (int Y = 0; Y < 9; Y++) {
-      if (mouseX > a[X][Y].x && mouseX < a[X][Y].x + 50 && mouseY > a[X][Y].y && mouseY < a[X][Y].y +50) {  //if the mouse is clicked within a certain box
-        a[X][Y].disappear();   //use the method to cause the block to dissapear
-        if (a[X][Y].hasMine == false) {  //if the box is not a mine
+      if (mouseX > a[X][Y].x && mouseX < a[X][Y].x + 50 && mouseY > a[X][Y].y && mouseY < a[X][Y].y +50) {  //if the mouse is clicked within a certain box...
+        a[X][Y].disappear();   //use the disappear method to cause the block to dissapear
+        if (a[X][Y].hasMine == false) {  //if the box is not a mine...
           if (X<8) {    
-            if (a[X+1][Y].hasMine) {   //is there a mine to the right if so increase m
-              a[X][Y].m++;
+            if (a[X+1][Y].hasMine) {   //if there is a mine to the right...
+              a[X][Y].m++;  //...increase m
             }
           }
           if (X>0) {   
-            if (a[X-1][Y].hasMine) {   //is there a mine to the left if so increase m
-              a[X][Y].m++;
+            if (a[X-1][Y].hasMine) {   //if there is a mine to the left...
+              a[X][Y].m++;  //...increase m
             }
           }
-          if (X<8 && Y<8) {   //is there a mine diagonally down to the right if so increase m
+          if (X<8 && Y<8) {   //if there is a mine diagonally down to the right...
             if (a[X+1][Y+1].hasMine) { 
-              a[X][Y].m++;
+              a[X][Y].m++;  //...increase m
             }
           }
           if (X<8 && Y>0) {
-            if (a[X+1][Y-1].hasMine) {   //is there a mine diagonally up to the right if so increase m
-              a[X][Y].m++;
+            if (a[X+1][Y-1].hasMine) {   //if there is a mine diagonally up to the right...
+              a[X][Y].m++;  //...increase m
             }
           }
           if (X>0 && Y<8) {
-            if (a[X-1][Y+1].hasMine) {  //is there a mine diagonally down to the left if so increase m
-              a[X][Y].m++;
+            if (a[X-1][Y+1].hasMine) {  //if there is a mine diagonally down to the left...
+              a[X][Y].m++;  //...increase m
             }
           }
           if (X>0 && Y>0) {
-            if (a[X-1][Y-1].hasMine) { //is there a mine diagonally to the right if so increase m 
-              a[X][Y].m++;
+            if (a[X-1][Y-1].hasMine) { //if there is a mine diagonally to the right...
+              a[X][Y].m++;  //...increase m
             }
           }
           if (Y<8) {
-            if (a[X][Y+1].hasMine) {   //is there a mine below if so increase m
-              a[X][Y].m++;
+            if (a[X][Y+1].hasMine) {   //if there is a mine below...
+              a[X][Y].m++;  //...increase m
             }
           }
           if (Y>0) {
