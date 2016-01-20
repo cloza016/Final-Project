@@ -5,6 +5,7 @@ int n;
 PImage mine;
 boolean lose;
 PImage flag;
+int score;
 
 void setup() {
   size(650, 650);     //set the size of the canvas
@@ -17,19 +18,13 @@ void setup() {
   lose = false;
   flag = loadImage("ACAD-logo.png");
   n = 0;   //declare the value for n
+  score = 10;
 }
 
 void draw() {
   background(0);   //set the backgroun to black
   for (int X = 0; X < 9; X++) {   //for loop to draw the grid for the x and y values
     for (int Y = 0; Y < 9; Y++) {
-      a[X][Y].display();
-      if (a[X][Y].hasMine == true && a[X][Y].revealed == true) {
-        fill(255, 0, 0);
-        rect(a[X][Y].x, a[X][Y].y, 50, 50);
-        image(mine, a[X][Y].x, a[X][Y].y);
-        lose = true;
-      }
       a[X][Y].display();     //using the display method draw the blocks
       if (a[X][Y].hasMine == true && a[X][Y].revealed == true) {
         fill(255, 0, 0);
@@ -55,6 +50,10 @@ void draw() {
     a[round(random(0, 8))][round(random(0, 8))].hasMine = true;   //set the value for the boxes that have mines to truw for the boolean hasmine
     n++;   //increase the value of n until it reaches 10
   }
+  textSize(25);
+  textAlign(CENTER, CENTER);
+  fill(255);
+  text(score, 250, 50);
 }
 
 void mouseClicked() {  //mouse clicked 
@@ -108,6 +107,7 @@ void mouseClicked() {  //mouse clicked
         }
         if (mouseButton == RIGHT) {
           a[X][Y].flagged = true;
+          score = score - 1;
         }
       }
     }
