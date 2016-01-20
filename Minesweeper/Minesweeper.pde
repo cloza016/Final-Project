@@ -32,7 +32,7 @@ void setup() {
 }
 
 void draw() {
-  background(0);   //set the backgroun to black
+  background(#fae9e1);   //set the backgroun to black
 
   actualSecs = millis()/1000; //convert milliseconds to seconds
   actualMins = millis() /1000 / 60; //convert milliseconds to minutes

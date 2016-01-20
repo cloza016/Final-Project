@@ -11,18 +11,18 @@ class Block {   //setup the Block class
     hasMine = false;   //set has mine to false when drawn
     x = X;   //set x equal to X and y to Y
     y = Y;
-    g =150;
-    m = 0;
     revealed = false;
     flagged = false;
-    g =150;   //give the variable g a value
+    g = 150;   //give the variable g a value
     m = 0;   //set m to 0
     revealed = false;   //set revealed to false when drawn
   }
- 
+
   void display() {   //method display
-    fill(g);    //set the fill to variable g or also gray
-    rect(x, y, 50, 50);   //draw the rectangle 
+    if (revealed==false) {
+      fill(#eda691);    //set the fill to variable g or also gray
+      rect(x, y, 50, 50);   //draw the rectangle
+    }
   }
 
   void disappear() { //method disappear
