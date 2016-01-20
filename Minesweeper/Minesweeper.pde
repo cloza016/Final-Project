@@ -7,6 +7,16 @@ boolean lose;
 PImage flag;
 int score;
 
+int actualSecs; //actual seconds elapsed since start
+int actualMins; //actual minutes elapsed since startint startSec = 0; //used to reset seconds shown on screen to 0
+int startMin = 0; //used to reset minutes shown on screen to 0
+int startSec = 0;
+int scrnSecs=0; //seconds displayed on screen 
+int scrnMins=0; //minutes displayed on screen (will be infinite)
+int restartSecs=0; //number of seconds elapsed at 60 sec interval
+int restartMins=0; //number of seconds ellapsed at most recent minute
+
+
 void setup() {
   size(650, 650);     //set the size of the canvas
   for (int X = 0; X < 9; X++) {    //create a for loop too draw the grid for the x and y locations
@@ -23,6 +33,26 @@ void setup() {
 
 void draw() {
   background(0);   //set the backgroun to black
+  
+  actualSecs = millis()/1000; //convert milliseconds to seconds
+  actualMins = millis() /1000 / 60; //convert milliseconds to minutes
+ scrnSecs = actualSecs - restartSecs; //seconds to be shown on screen
+  scrnMins = actualMins - restartMins; //minutes to be shown on screen
+
+  if (actualSecs % 60 == 0) { //after 60 secs, restart second timer 
+    restartSecs = actualSecs;   //placeholder for this second in time
+     scrnSecs = startSec; //reset to zero
+    }
+     
+textAlign(CENTER, CENTER);
+fill(255,0,0);
+text(scrnSecs,(width/2)+30, 50);//NEED TO CHANGE PLACEMENT OF TEXT
+text(":",width/2,50);
+text(scrnMins,(width/2)-20,50);
+
+println(scrnSecs);
+
+  
   for (int X = 0; X < 9; X++) {   //for loop to draw the grid for the x and y values
     for (int Y = 0; Y < 9; Y++) {
       a[X][Y].display();     //using the display method draw the blocks
