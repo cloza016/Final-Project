@@ -10,13 +10,15 @@ PFont font;
 PImage loss;
 
 int actualSecs; //actual seconds elapsed since start
-int actualMins; //actual minutes elapsed since startint startSec = 0; //used to reset seconds shown on screen to 0
-int startMin = 0; //used to reset minutes shown on screen to 0
-int startSec = 0;
+int actualMins; //actual minutes elapsed since startint startSec = 0; 
+int startMin = 0; //starting minute value
+int startSec = 0; //starting second value
 int scrnSecs=0; //seconds displayed on screen 
 int scrnMins=0; //minutes displayed on screen (will be infinite)
 int restartSecs=0; //number of seconds elapsed at 60 sec interval
 int restartMins=0; //number of seconds ellapsed at most recent minute
+int displaySec, timeClicked;  //displaying time and clicking
+boolean timeExists = true;  //boolean to stop timer
 
 
 void setup() {
@@ -37,26 +39,30 @@ void setup() {
 }
 
 void draw() {
-  background(#fae9e1);   //set the backgroun to black
+  background(#fae9e1);   //set the background to black
 
-  actualSecs = millis()/1000; //convert milliseconds to seconds
+   actualSecs = millis()/1000; //convert milliseconds to seconds
   actualMins = millis() /1000 / 60; //convert milliseconds to minutes
   scrnSecs = actualSecs - restartSecs; //seconds to be shown on screen
   scrnMins = actualMins - restartMins; //minutes to be shown on screen
 
+
   if (actualSecs % 60 == 0) { //after 60 secs, restart second timer 
     restartSecs = actualSecs;   //placeholder for this second in time
-    scrnSecs = startSec; //reset to zero
+    displaySec = startSec; //reset to zero
   }
-  textSize(25);    
-  textAlign(CENTER, CENTER);
-  fill(#eda691);
-  text(scrnSecs, (width/2 + 60)+30, 50);//NEED TO CHANGE PLACEMENT OF TEXT
-  text(":", width/2 + 60, 50);
-  text(scrnMins, (width/2 + 60)-20, 50);
 
-  println(scrnSecs);
+  if (timeExists) {
+    displaySec = scrnSecs;  //display seconds
+  } else {
+    displaySec = timeClicked;  //unless clicked
+  }
 
+  textAlign(CENTER, CENTER);  //text align
+  fill(255, 0, 0);  //fill color
+  text(displaySec, (width/2)+110, 50);  //placement
+  text(":", (width/2)+90, 50);  //placement
+  text(scrnMins, (width/2)+70, 50);  //placement
 
   for (int X = 0; X < 9; X++) {   //for loop to draw the grid for the x and y values
     for (int Y = 0; Y < 9; Y++) {
@@ -170,4 +176,9 @@ void mouseClicked() {  //mouse clicked
       }
     }
   }
+}
+
+void mousePressed() {  //INSTEAD OF MOUSEPRESSED, CHANGE TO END SCREEN
+  timeExists = false;
+  timeClicked = scrnSecs;
 }
