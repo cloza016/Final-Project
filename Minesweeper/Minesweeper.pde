@@ -7,6 +7,7 @@ boolean lose;
 PImage flag;
 int score;
 PFont font;
+PImage loss;
 
 int actualSecs; //actual seconds elapsed since start
 int actualMins; //actual minutes elapsed since startint startSec = 0; //used to reset seconds shown on screen to 0
@@ -30,7 +31,7 @@ void setup() {
   flag = loadImage("ACAD-logo.png");
   n = 0;   //declare the value for n
   score = 10;
-  
+  loss = loadImage("maher-mine-inverted.png");
   font = createFont("Courier New", 50);
   textFont(font);
 }
@@ -50,9 +51,9 @@ void draw() {
   textSize(25);    
   textAlign(CENTER, CENTER);
   fill(#eda691);
-  text(scrnSecs, (width/2)+30, 50);//NEED TO CHANGE PLACEMENT OF TEXT
-  text(":", width/2, 50);
-  text(scrnMins, (width/2)-20, 50);
+  text(scrnSecs, (width/2 + 60)+30, 50);//NEED TO CHANGE PLACEMENT OF TEXT
+  text(":", width/2 + 60, 50);
+  text(scrnMins, (width/2 + 60)-20, 50);
 
   println(scrnSecs);
 
@@ -63,6 +64,7 @@ void draw() {
       if (a[X][Y].hasMine == true && a[X][Y].revealed == true) {
         fill(#676e4f);
         rect(a[X][Y].x, a[X][Y].y, 50, 50);
+        imageMode(CORNER);
         image(mine, a[X][Y].x, a[X][Y].y);
         lose = true;
       }
@@ -76,6 +78,7 @@ void draw() {
         a[X][Y].revealed = true;
       }
       if ( a[X][Y].flagged == true) {
+        imageMode(CORNER);
         image(flag, a[X][Y].x, a[X][Y].y);
       }
     }
@@ -87,12 +90,22 @@ void draw() {
   textSize(25);
   textAlign(CENTER, CENTER);
   fill(#2f3325);
-  text(score, 250, 50);
+  text(score, width/2-50, 50);
   if (lose) {
-
     textAlign(CENTER, CENTER);
     textSize(100);
     text("YOU LOSE!", width/2, height/2); //on top of board (or bg)
+  }
+  if (lose == false) {
+    fill(#676e4f);
+    imageMode(CENTER);
+    rect(width/2 - 25, 25, 50, 50);
+    image(mine, width/2, 50);
+  } else {
+    fill(#eda691);
+    imageMode(CENTER);
+    rect(width/2 - 25, 25, 50, 50);
+    image(loss, width/2, 50);
   }
 }
 
