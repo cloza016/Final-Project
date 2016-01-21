@@ -113,7 +113,6 @@ void draw() {
     rect(width/2 - 25, 25, 50, 50);
     image(loss, width/2, 50);
     timeExists = false;
- 
   }
   if (lose == false && win == false) {
     fill(#676e4f);
@@ -133,9 +132,33 @@ void draw() {
     fill(#676e4f);
     imageMode(CENTER);
     rect(width/2 - 25, 25, 50, 50);
-    image(winpic, width/2,50);
+    image(winpic, width/2, 50);
     timeExists = false;
-}
+  }
+
+  if (mousePressed) {
+    if (mouseX > width/2 - 25 && mouseX < width/2 + 25 && mouseY > 25 && mouseY < 75) {
+      n = 0;
+      lose = false;
+      win = false;
+      u = 0;
+      for (int X = 0; X < 9; X++) {   //while in the grid
+        for (int Y = 0; Y < 9; Y++) {
+         timeExists= true;
+          a[X][Y].revealed = false;
+          a[X][Y].hasMine = false;
+          startMin = 0;
+          startSec = 0; 
+          scrnSecs=0; 
+          scrnMins=0; 
+          restartSecs=0; 
+          restartMins=0;
+       displaySec = scrnSecs; 
+      
+    }
+      }
+    }
+  }
 }
 
 void mouseClicked() {  //mouse clicked 
