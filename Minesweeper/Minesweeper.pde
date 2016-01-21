@@ -20,7 +20,7 @@ int scrnSecs=0; //seconds displayed on screen
 int scrnMins=0; //minutes displayed on screen (will be infinite)
 int restartSecs=0; //number of seconds elapsed at 60 sec interval
 int restartMins=0; //number of seconds ellapsed at most recent minute
-int displaySec, timeClicked;  //displaying time and clicking
+int displaySec; //displaying time 
 boolean timeExists = true;  //boolean to stop timer
 
 
@@ -62,9 +62,7 @@ void draw() {
   textSize(25);
   if (timeExists) {
     displaySec = scrnSecs;  //display seconds
-  } else {
-    displaySec = timeClicked;  //unless clicked
-  }
+  } 
 
   textAlign(CENTER, CENTER);  //text align
   textSize(25);
@@ -98,7 +96,7 @@ void draw() {
       }
     }
   }
-  while (n<10) {    //while loop to draw the mines while the value is less than 10
+  while (n<11) {    //while loop to draw the mines while the value is less than 10
     a[round(random(0, 8))][round(random(0, 8))].hasMine = true;   //set the value for the boxes that have mines to truw for the boolean hasmine
     n++;   //increase the value of n until it reaches 10
   }
@@ -115,7 +113,7 @@ void draw() {
     rect(width/2 - 25, 25, 50, 50);
     image(loss, width/2, 50);
     timeExists = false;
-    timeClicked = scrnSecs;
+ 
   }
   if (lose == false && win == false) {
     fill(#676e4f);
@@ -136,7 +134,8 @@ void draw() {
     imageMode(CENTER);
     rect(width/2 - 25, 25, 50, 50);
     image(winpic, width/2,50);
-  }
+    timeExists = false;
+}
 }
 
 void mouseClicked() {  //mouse clicked 
