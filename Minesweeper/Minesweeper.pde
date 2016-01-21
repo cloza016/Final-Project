@@ -8,6 +8,9 @@ PImage flag;
 int score;
 PFont font;
 PImage loss;
+int u;
+boolean win;
+PImage winpic;
 
 int actualSecs; //actual seconds elapsed since start
 int actualMins; //actual minutes elapsed since startint startSec = 0; 
@@ -36,12 +39,15 @@ void setup() {
   loss = loadImage("maher-mine-inverted.png");
   font = createFont("Courier New", 50);
   textFont(font);
+  u = 0;
+  win = false;
+  winpic = loadImage("maher-mine-sunglasses.png");
 }
 
 void draw() {
   background(#fae9e1);   //set the background to black
 
-   actualSecs = millis()/1000; //convert milliseconds to seconds
+  actualSecs = millis()/1000; //convert milliseconds to seconds
   actualMins = millis() /1000 / 60; //convert milliseconds to minutes
   scrnSecs = actualSecs - restartSecs; //seconds to be shown on screen
   scrnMins = actualMins - restartMins; //minutes to be shown on screen
@@ -52,6 +58,8 @@ void draw() {
     displaySec = startSec; //reset to zero
   }
 
+
+  textSize(25);
   if (timeExists) {
     displaySec = scrnSecs;  //display seconds
   } else {
@@ -59,6 +67,7 @@ void draw() {
   }
 
   textAlign(CENTER, CENTER);  //text align
+  textSize(25);
   fill(255, 0, 0);  //fill color
   text(displaySec, (width/2)+110, 50);  //placement
   text(":", (width/2)+90, 50);  //placement
@@ -101,17 +110,32 @@ void draw() {
     textAlign(CENTER, CENTER);
     textSize(100);
     text("YOU LOSE!", width/2, height/2); //on top of board (or bg)
-  }
-  if (lose == false) {
-    fill(#676e4f);
-    imageMode(CENTER);
-    rect(width/2 - 25, 25, 50, 50);
-    image(mine, width/2, 50);
-  } else {
     fill(#eda691);
     imageMode(CENTER);
     rect(width/2 - 25, 25, 50, 50);
     image(loss, width/2, 50);
+    timeExists = false;
+    timeClicked = scrnSecs;
+  }
+  if (lose == false && win == false) {
+    fill(#676e4f);
+    imageMode(CENTER);
+    rect(width/2 - 25, 25, 50, 50);
+    image(mine, width/2, 50);
+  }
+
+  if (u == 71) {
+    win = true;
+  }
+
+  if (win) {
+    textAlign(CENTER, CENTER);
+    textSize(100);
+    text("YOU WIN!", width/2, height/2);
+    fill(#676e4f);
+    imageMode(CENTER);
+    rect(width/2 - 25, 25, 50, 50);
+    image(winpic, width/2,50);
   }
 }
 
@@ -121,6 +145,7 @@ void mouseClicked() {  //mouse clicked
       if (mouseX > a[X][Y].x && mouseX < a[X][Y].x + 50 && mouseY > a[X][Y].y && mouseY < a[X][Y].y +50) {  //if the mouse is clicked within a certain box
         if (mouseButton == LEFT && a[X][Y].revealed == false) {
           a[X][Y].disappear();   //use the method to cause the block to dissapear
+          u++;
           if (a[X][Y].hasMine == false) {  //if the box is not a mine
             if (X<8) {    
               if (a[X+1][Y].hasMine) {   //is there a mine to the right if so increase m
@@ -176,9 +201,4 @@ void mouseClicked() {  //mouse clicked
       }
     }
   }
-}
-
-void mousePressed() {  //INSTEAD OF MOUSEPRESSED, CHANGE TO END SCREEN
-  timeExists = false;
-  timeClicked = scrnSecs;
 }
