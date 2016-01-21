@@ -6,6 +6,7 @@ PImage mine;
 boolean lose;
 PImage flag;
 int score;
+PFont font;
 
 int actualSecs; //actual seconds elapsed since start
 int actualMins; //actual minutes elapsed since startint startSec = 0; //used to reset seconds shown on screen to 0
@@ -29,6 +30,9 @@ void setup() {
   flag = loadImage("ACAD-logo.png");
   n = 0;   //declare the value for n
   score = 10;
+  
+  font = createFont("Courier New", 50);
+  textFont(font);
 }
 
 void draw() {
@@ -45,7 +49,7 @@ void draw() {
   }
   textSize(25);    
   textAlign(CENTER, CENTER);
-  fill(255, 0, 0);
+  fill(#eda691);
   text(scrnSecs, (width/2)+30, 50);//NEED TO CHANGE PLACEMENT OF TEXT
   text(":", width/2, 50);
   text(scrnMins, (width/2)-20, 50);
@@ -57,13 +61,13 @@ void draw() {
     for (int Y = 0; Y < 9; Y++) {
       a[X][Y].display();     //using the display method draw the blocks
       if (a[X][Y].hasMine == true && a[X][Y].revealed == true) {
-        fill(255, 0, 0);
+        fill(#676e4f);
         rect(a[X][Y].x, a[X][Y].y, 50, 50);
         image(mine, a[X][Y].x, a[X][Y].y);
         lose = true;
       }
       if (a[X][Y].revealed == true && a[X][Y].m > 0) { //if revealed is true
-        fill(255);  //set the fill to white
+        fill(#676e4f);  //set the fill to white
         textSize(25); //set text size
         textAlign( CENTER, CENTER);  //text align to center
         text(a[X][Y].m, a[X][Y].x + 25, a[X][Y].y + 25);  //draw the variable m also know as the mine surrounding it in the box
@@ -82,7 +86,7 @@ void draw() {
   }
   textSize(25);
   textAlign(CENTER, CENTER);
-  fill(255);
+  fill(#2f3325);
   text(score, 250, 50);
   if (lose) {
 

@@ -21,6 +21,7 @@ class Block {   //setup the Block class
   void display() {   //method display
     if (revealed==false) {
       fill(#eda691);    //set the fill to variable g or also gray
+      stroke(#fae9e1);
       rect(x, y, 50, 50);   //draw the rectangle
     }
   }
@@ -28,6 +29,7 @@ class Block {   //setup the Block class
   void disappear() { //method disappear
     g=0;   //declare g as 0
     fill(0, 0, 0, 0);   //set the fill
+    
     rect(x, y, 50, 50);   //draw rectangle 
     revealed = true;   //set revealed to true
   }
