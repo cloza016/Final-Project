@@ -144,18 +144,12 @@ void draw() {
       u = 0;
       for (int X = 0; X < 9; X++) {   //while in the grid
         for (int Y = 0; Y < 9; Y++) {
-         timeExists= true;
+          timeExists= true;
           a[X][Y].revealed = false;
           a[X][Y].hasMine = false;
-          startMin = 0;
-          startSec = 0; 
-          scrnSecs=0; 
-          scrnMins=0; 
-          restartSecs=0; 
-          restartMins=0;
-       displaySec = scrnSecs; 
-      
-    }
+restartSecs = scrnSecs; //restart timer
+
+        }
       }
     }
   }
