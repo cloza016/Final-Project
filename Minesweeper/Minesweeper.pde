@@ -142,13 +142,16 @@ void draw() {
       lose = false;
       win = false;
       u = 0;
+      timeExists= true;
+      restartSecs = actualSecs; //restart timer
+      restartMins = actualMins;
+      score = 10;
       for (int X = 0; X < 9; X++) {   //while in the grid
         for (int Y = 0; Y < 9; Y++) {
-          timeExists= true;
+          a[X][Y].flagged = false;
           a[X][Y].revealed = false;
           a[X][Y].hasMine = false;
-restartSecs = scrnSecs; //restart timer
-
+          a[X][Y].m = 0;
         }
       }
     }
