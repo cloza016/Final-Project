@@ -37,7 +37,7 @@ void setup() {
   n = 0;   //declare the value for n
   score = 10;
   loss = loadImage("maher-mine-inverted.png");
-  font = createFont("Courier New", 50);
+  font = createFont("OratorStd", 50);
   textFont(font);
   u = 0;
   win = false;
@@ -45,7 +45,6 @@ void setup() {
 }
 
 void draw() {
-  background(#fae9e1);   //set the background to black
 
   actualSecs = millis()/1000; //convert milliseconds to seconds
   actualMins = millis() /1000 / 60; //convert milliseconds to minutes
@@ -63,6 +62,8 @@ void draw() {
   if (timeExists) {
     displaySec = scrnSecs;  //display seconds
   } 
+
+  background(#fae9e1);   //set the background to black
 
   textAlign(CENTER, CENTER);  //text align
   textSize(25);
